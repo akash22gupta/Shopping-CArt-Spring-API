@@ -20,6 +20,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -149,6 +152,33 @@ public class ItemTest {
 
          Assert.assertEquals("Updated user name should equal ".concat(expectedName),expectedName,actualName);
 
+     }
+
+
+
+     @Test
+    public void testDeleteItem() throws Exception {
+        //Setup
+         Item newItem = new Item("Banana");
+         itemRepository.save(newItem);
+
+         Integer newItemId = newItem.getId();
+
+         String expectedNAme = "Banana";
+         String expetedContentType = "application/json;charset=UTF-8";
+         String expectedPAth = "/api/item/".concat(newItemId.toString());
+
+         //Exercise
+
+         MvcResult mockResult = mvc.perform(delete(expectedPAth))
+                 .andExpect(status().isOk())
+                 .andReturn();
+
+         //Assert
+//         Assert.assertEquals("Content type of DELETE response should equal \\\"application/json;charset=UTF-8\\",expetedContentType,mockResult.getResponse().getContentType());
+//         Assert.assertEquals("Delete Item name should euual".concat(expectedNAme),expectedNAme,actualName);
+         assertNull("Object should not be found.", itemRepository.findById(newItemId).orElse(null));
+         assertEquals("Object should not be found.", itemRepository.findById(newItemId), Optional.empty());
      }
 }
 

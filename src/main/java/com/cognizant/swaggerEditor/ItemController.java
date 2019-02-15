@@ -1,6 +1,7 @@
 package com.cognizant.swaggerEditor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +37,11 @@ import java.util.Optional;
                     return repository.save(item);
                     })
                     .orElseGet(()->repository.save(itemToUPdate));
+        }
+
+        @DeleteMapping("{id}")
+        public void deleteItemById(@PathVariable(name="id") int id){
+            repository.deleteById(id);
         }
 
     }
