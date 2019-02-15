@@ -164,19 +164,15 @@ public class ItemTest {
 
          Integer newItemId = newItem.getId();
 
-         String expectedNAme = "Banana";
-         String expetedContentType = "application/json;charset=UTF-8";
          String expectedPAth = "/api/item/".concat(newItemId.toString());
 
          //Exercise
 
-         MvcResult mockResult = mvc.perform(delete(expectedPAth))
+         mvc.perform(delete(expectedPAth))
                  .andExpect(status().isOk())
                  .andReturn();
 
-         //Assert
-//         Assert.assertEquals("Content type of DELETE response should equal \\\"application/json;charset=UTF-8\\",expetedContentType,mockResult.getResponse().getContentType());
-//         Assert.assertEquals("Delete Item name should euual".concat(expectedNAme),expectedNAme,actualName);
+        //Assert
          assertNull("Object should not be found.", itemRepository.findById(newItemId).orElse(null));
          assertEquals("Object should not be found.", itemRepository.findById(newItemId), Optional.empty());
      }
