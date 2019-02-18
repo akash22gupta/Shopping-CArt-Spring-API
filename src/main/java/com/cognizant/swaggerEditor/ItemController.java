@@ -20,12 +20,12 @@ import java.util.Optional;
         }
 
         @PostMapping
-        public Item saveUser(@RequestBody Item newItem) {
+        public Item saveItem(@RequestBody Item newItem) {
             return repository.save(newItem);
         }
 
         @GetMapping("{id}")
-        public Optional<Item> getUserById(@PathVariable(name = "id") int id){
+        public Optional<Item> getItemById(@PathVariable(name = "id") int id){
             return repository.findById(id);
         }
 
@@ -43,9 +43,6 @@ import java.util.Optional;
         public void deleteItemById(@PathVariable(name="id") int id){
             repository.deleteById(id);
         }
-
-
-
 
 
     }

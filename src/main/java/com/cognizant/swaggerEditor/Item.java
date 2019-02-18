@@ -25,6 +25,13 @@ public class Item {
 
     }
 
+    public Item(String name, Long price, boolean onSale) {
+        this.name = name;
+        this.price = price;
+        this.onSale = onSale;
+    }
+
+
 
     public void setName(String name) {
         this.name = name;
@@ -71,12 +78,5 @@ public class Item {
         return name;
     }
 
-    @SpringBootApplication
 
-    public static class ShoppingCartApiApplication {
-        public static void main(String[] args) {
-            SpringApplication.run(ShoppingCartApiApplication.class, args);
-        }
-
-    }
 }

@@ -3,7 +3,6 @@ package com.cognizant.swaggerEditor;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.aspectj.weaver.ast.ITestVisitor;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -115,7 +114,7 @@ public class ItemTest {
                  new TypeReference<Item>(){});
 
          // Assert
-        Assert. assertEquals("Content type of POST response should equal \"application/json;charset=UTF-8\"",
+        Assert. assertEquals("Content type of GET response should equal \"application/json;charset=UTF-8\"",
                  expectedContentType, mockResult.getResponse().getContentType());
 
         Assert.assertEquals("GET call to ".concat(path).concat(" should return the correct Item."),
